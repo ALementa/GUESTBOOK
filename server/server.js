@@ -28,6 +28,10 @@ const pool = new Pool({
   family: 4,
 });
 export default pool;
+pool
+  .query("SELECT 1")
+  .then(() => console.log("DB connected ✅"))
+  .catch((err) => console.error("DB FAIL ❌", err));
 
 // GET /messages
 app.get("/messages", async (req, res) => {
