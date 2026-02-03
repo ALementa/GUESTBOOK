@@ -12,12 +12,22 @@ const PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }, //For Supabase
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: { rejectUnauthorized: false }, //For Supabase
 
-  family: 4, //Take a lot of time IPV4 not IPV6
+//   family: 4, //Take a lot of time IPV4 not IPV6
+// });
+const pool = new Pool({
+  host: "db.nfnqpzwhoqarwclrpvdt.supabase.co",
+  user: "postgres",
+  password: process.env.DB_PASSWORD,
+  database: "postgres",
+  port: 5432,
+  ssl: { rejectUnauthorized: false },
+  family: 4,
 });
+export default pool;
 
 // GET /messages
 app.get("/messages", async (req, res) => {
