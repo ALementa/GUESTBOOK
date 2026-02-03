@@ -15,6 +15,8 @@ app.use(express.json());
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }, //For Supabase
+
+  family: 4, //Take a lot of time IPV4 not IPV6
 });
 
 // GET /messages
